@@ -49,4 +49,75 @@ An AI-powered shipment assistant uses retrieval-augmented generation (RAG) to an
 - Supports escalation of unresolved delivery issues
 
 **AI Assistant Service**
-- Uses
+- Uses an LLM-powered conversational interface
+- Retrieves relevant shipment history and delivery policies through RAG
+- Provides contextual explanations for delivery delays and exceptions
+- Uses controlled backend API calls for current shipment information
+
+**Kafka Event Bus**
+- Publishes shipment lifecycle events
+- Decouples services through asynchronous messaging
+- Supports shipment updates and recovery workflows
+
+**PostgreSQL**
+- Stores shipment records, tracking history, and operational data
+- Maintains persistent shipment state
+
+**Redis Cache**
+- Caches frequently accessed shipment information
+- Reduces repeated database lookups
+- Improves tracking API response performance
+
+## Event Flow
+
+1. A shipment is created through the Shipment Service.
+2. Shipment lifecycle events are published to Kafka.
+3. The Event Processing Service consumes and validates incoming events.
+4. Shipment status and tracking history are updated in PostgreSQL.
+5. Delayed or failed shipments are identified through exception detection rules.
+6. The Recovery Service initiates the appropriate recovery workflow.
+7. Customers can query shipment information through the AI assistant, which retrieves relevant context and uses backend APIs when live data is required.
+
+## Technology Stack
+
+**Backend**
+- Java 21
+- Spring Boot
+- Spring Data JPA
+- Spring Web
+
+**Messaging & Event Processing**
+- Apache Kafka
+
+**Database & Caching**
+- PostgreSQL
+- Redis
+
+**AI Integration**
+- Large Language Models (LLMs)
+- Retrieval-Augmented Generation (RAG)
+- Embeddings and semantic retrieval
+
+**Frontend**
+- React
+- TypeScript
+
+**DevOps**
+- Docker
+- Docker Compose
+
+## Engineering Focus
+
+ParcelPulse explores core distributed systems and backend engineering concepts:
+
+- Event-driven architecture and asynchronous communication
+- Idempotency and duplicate event handling
+- State management and workflow orchestration
+- Database consistency and transaction management
+- Retry strategies and fault recovery
+- Caching and API performance optimization
+- LLM integration with retrieval-grounded responses
+
+## Project Goals
+
+Build a reliable shipment intelligence platform that goes beyond conventional tracking by combining distributed backend processing, automated delivery exception handling, and practical AI-powered customer assistance.
