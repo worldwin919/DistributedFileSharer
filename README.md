@@ -1,56 +1,52 @@
-A scalable distributed file-sharing platform built with Java, Spring Boot, Apache Kafka, Redis, PostgreSQL, and Docker. The system enables peer discovery, file metadata management, asynchronous file synchronization, and fault-tolerant communication between distributed nodes.
+# ParcelPulse — AI-Assisted Delivery Intelligence & Recovery Platform
 
-# Overview
+An event-driven shipment intelligence platform built with **Java, Spring Boot, Apache Kafka, Redis, PostgreSQL, and React**, designed to track deliveries, detect shipment disruptions, and coordinate recovery workflows. Integrates an **LLM-powered assistant with Retrieval-Augmented Generation (RAG)** to provide contextual shipment explanations and delivery support.
 
-Traditional centralized file-sharing systems suffer from single points of failure and scalability limitations. This project explores distributed system principles by enabling multiple nodes to share, discover, and synchronize files while maintaining consistency and reliability.
+## Overview
 
-The platform leverages an event-driven architecture using Apache Kafka to decouple services and support asynchronous processing for file indexing, replication, and peer notifications.
+Traditional shipment tracking systems primarily display delivery status updates, leaving customers and logistics operators with limited visibility into delays, failed deliveries, and shipment exceptions.
 
-# Key Features
-Peer-to-peer file sharing across distributed nodes
-File upload and download APIs
-Metadata management and indexing
-Event-driven communication using Apache Kafka
-Distributed file synchronization
-Redis-powered metadata caching
-Fault-tolerant message processing
-Dockerized multi-service deployment
-RESTful APIs for client interactions
-Structured logging and error handling
+ParcelPulse takes a proactive approach by processing shipment events in real time, identifying delivery disruptions, and coordinating recovery workflows through an event-driven architecture.
 
-# System Architecture
-Components
-Metadata Service
-Maintains file metadata
-Tracks file ownership and availability
-Stores metadata in PostgreSQL
-Peer Nodes
-Store actual file content
-Handle uploads and downloads
-Communicate through platform APIs
-Kafka Event Bus
-Publishes file events
-Enables asynchronous communication
-Handles indexing, synchronization, and replication workflows
-Redis Cache
-Caches frequently accessed metadata
-Improves lookup performance
-Reduces database load
+The platform uses Apache Kafka to decouple shipment services and support asynchronous event processing. It incorporates idempotent event handling, shipment lifecycle management, and automated exception workflows to improve reliability across distributed components.
 
-# Technology Stack
-Backend
-Java 21
-Spring Boot
-Spring Data JPA
-Spring Web
-Messaging & Streaming
-Apache Kafka
-Storage
-PostgreSQL
-Caching
-Redis
-DevOps
-Docker
-Docker Compose
-Event Flow
-ching
+An AI-powered shipment assistant uses retrieval-augmented generation (RAG) to answer customer queries using shipment history and delivery policies, providing contextual explanations grounded in platform data.
+
+## Key Features
+
+- Real-time shipment tracking and delivery status updates
+- Event-driven shipment processing using Apache Kafka
+- Detection of delayed, duplicate, and failed delivery events
+- Shipment lifecycle management using state-based workflows
+- Idempotent event processing to prevent duplicate updates
+- Automated exception handling and delivery recovery workflows
+- Redis-based caching for frequently accessed shipment data
+- PostgreSQL-backed shipment and event persistence
+- AI-powered shipment assistant using LLMs and RAG
+- Contextual retrieval from shipment history and delivery policies
+- RESTful APIs for shipment and tracking operations
+- Dockerized multi-service deployment
+
+## System Architecture
+
+### Components
+
+**Shipment Service**
+- Creates and manages shipment records
+- Maintains shipment lifecycle and delivery status
+- Exposes REST APIs for shipment operations
+
+**Event Processing Service**
+- Consumes shipment events through Apache Kafka
+- Processes tracking updates asynchronously
+- Detects duplicate, delayed, and invalid events
+- Updates shipment state while maintaining event consistency
+
+**Recovery & Exception Service**
+- Identifies failed deliveries and shipment exceptions
+- Coordinates recovery workflows based on shipment state
+- Handles retries and failed event processing
+- Supports escalation of unresolved delivery issues
+
+**AI Assistant Service**
+- Uses
